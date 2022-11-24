@@ -35,7 +35,15 @@ class HBNBCommand(cmd.Cmd):
         if line:
             args = line.split()
             try:
-                temp = models.args[0]()
+                models.args[0]()
+                if args[1]:
+                    key = "{}.{}".format(args[0], args[1])
+                    try:
+                        print(models.storage.all()[key])
+                    except Exception:
+                            print("** no instance found **")
+                else:
+                    print("** instance id missing **")
             except Exception:
                 print("** class doesn't exist **")
         else:
