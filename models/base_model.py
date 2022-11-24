@@ -1,15 +1,9 @@
 #!/usr/bin/python3
 """class BaseModel that defines all common attributes/methods for other classes"""
 
-<<<<<<< Updated upstream
+
 from uuid import uuid4
-=======
->>>>>>> Stashed changes
 from datetime import datetime
-from models.engine import file_model
-
-
-from uud import uuid4
 import models
 
 
@@ -61,4 +55,3 @@ class BaseModel:
     def __str__(self):
         """print the instance"""
         return "[{}] ({}) {}".format(self.__class__.__name__, self.id, self.__dict__)
-    
