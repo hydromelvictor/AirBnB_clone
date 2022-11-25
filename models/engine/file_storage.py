@@ -3,7 +3,19 @@
 
 import json
 from os import path
+import os
 import models
+from models.amenity import Amenity
+from models.base_model import BaseModel
+from models.city import City
+from models.place import Place
+from models.review import Review
+from models.state import State
+from models.user import User
+
+objs = {'BaseModel': BaseModel, 'User': User, 'Place': Place,
+        'State': State, 'City': City, 'Amenity': Amenity,
+        'Review': Review}
 
 class FileStorage:
     """class for save file in json format"""
@@ -11,29 +23,26 @@ class FileStorage:
     __objects = {}
     
     def all(self):
-        """return all dictionnary of instaces"""
+        """ return __objects dictionary"""
         return self.__objects
-    
+
     def new(self, obj):
-        """new instances add in dictionnary"""
-        key = "{}.{}".format(type(obj).__name__, obj.id)
-        self.__objects[key] = obj
-    
+        """ sets obj in __objects"""
+        self.__objects[obj.__class__.__name__ + '.' + obj.id] = obj
+
     def save(self):
-        """serialization"""
-        json_obj = {}
-        for key, obj in self.__objects.items():
-            json_obj[key] = obj.to_dict()
-            
-        with open(self.__file_path, "w", encoding="utf-8") as file:
-            json.dump(json_obj, file)
+        """ serializes to JSON """
+        dummy_dict = {}
+        for key, value in self.__objects.items():
+            dummy_dict[key] = value.to_dict()
+        with open(self.__file_path, 'w') as f:
+            json.dump(dummy_dict, f)
     
     def reload(self):
-        """deserialization"""
-        if path.isfile(self.__file_path):
-            to_obj = {}
-            with open(self.__file_path, "r", encoding="utf-8") as file:
-                to_obj = json.load(file)
-                
-            for key, dic in to_obj.items():
-                self.__objects[key] = models.dic["__class__"](**dic)
+        """ deserializes JSON file to __objects"""
+        if os.path.exists(self.__file_path) is True:
+            with open(self.__file_path, 'r') as f:
+                json_objs = json.load(f)
+                for key in json_objs:
+                    inst = objs[json_objs[key]['__class__']]
+                    self.__objects[key] = inst(**(json_objs[key]))
