@@ -1,5 +1,6 @@
 """Test file for BaseModel Class"""
 
+import os
 import unittest
 
 from models.base_model import BaseModel
