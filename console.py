@@ -17,6 +17,7 @@ objs = {'BaseModel': BaseModel, 'User': User, 'Place': Place,
         'State': State, 'City': City, 'Amenity': Amenity,
         'Review': Review}
 
+
 class HBNBCommand(cmd.Cmd):
     """Class inheritance of cmd"""
 
@@ -29,7 +30,7 @@ class HBNBCommand(cmd.Cmd):
     def do_quit(self, line):
         """Quit command to exit the program"""
         return True
-    
+
     def do_create(self, args):
         """
         creates a new instance of basemodel
@@ -110,7 +111,7 @@ class HBNBCommand(cmd.Cmd):
                     if _dict['__class__'] == sp[0]:
                         objects.append(str(Objcls[obj]))
                 print(objects)
-            except:
+            except Exception:
                 print("** class doesn't exist **")
 
     def do_update(self, args):
@@ -124,7 +125,7 @@ class HBNBCommand(cmd.Cmd):
         else:
             try:
                 eval(str(sp[0]))
-            except:
+            except Exception:
                 print("** class doesn't exist **")
                 return
             if len(sp) == 1:
@@ -186,6 +187,7 @@ class HBNBCommand(cmd.Cmd):
             self.do_update(arg)
         else:
             print("*** Unknown syntax: {}".format(args))
+
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()

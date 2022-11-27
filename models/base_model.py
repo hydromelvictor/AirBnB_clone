@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-"""class BaseModel that defines all common attributes/methods for other classes"""
+"""class BaseModeltributes/methods"""
 
 
 from uuid import uuid4
@@ -9,7 +9,6 @@ import models
 
 class BaseModel:
     """class of base"""
-    
     def __init__(self, *args, **kwargs):
         """initialisation function
         id: identification unique
@@ -29,13 +28,13 @@ class BaseModel:
             self.id = str(uuid4())
             self.created_at = datetime.now()
             self.updated_at = self.created_at
-            models.storage.new(self) 
-    
+            models.storage.new(self)
+
     def save(self):
         """update datetime after modification"""
         self.updated_at = datetime.now()
         models.storage.save()
-    
+
     def to_dict(self):
         """return instance in dictonnary format"""
         # self.created_at = self.created_at.isoformat()
@@ -51,7 +50,7 @@ class BaseModel:
         new['__class__'] = self.__class__.__name__
         return (new)
         # return self.__dict__
-    
+
     def __str__(self):
         """print the instance"""
-        return "[{}] ({}) {}".format(self.__class__.__name__, self.id, self.__dict__)
+        return f"[{self.__class__.__name__}] ({self.id}) {self.__dict__}"

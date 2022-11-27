@@ -17,11 +17,12 @@ objs = {'BaseModel': BaseModel, 'User': User, 'Place': Place,
         'State': State, 'City': City, 'Amenity': Amenity,
         'Review': Review}
 
+
 class FileStorage:
     """class for save file in json format"""
     __file_path = "file.json"
     __objects = {}
-    
+
     def all(self):
         """ return __objects dictionary"""
         return self.__objects
@@ -37,7 +38,7 @@ class FileStorage:
             dummy_dict[key] = value.to_dict()
         with open(self.__file_path, 'w') as f:
             json.dump(dummy_dict, f)
-    
+
     def reload(self):
         """ deserializes JSON file to __objects"""
         if os.path.exists(self.__file_path) is True:
