@@ -3,7 +3,7 @@
 
 import cmd
 import re
-from shlex import shlex
+import shlex
 import models
 from models.amenity import Amenity
 from models.base_model import BaseModel
