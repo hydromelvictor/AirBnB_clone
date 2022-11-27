@@ -25,7 +25,7 @@ class Test_Storage(unittest.TestCase):
         del cls.storage
         try:
             os.remove("file.json")
-        except:
+        except Exception:
             pass
 
     def test_objects(self):

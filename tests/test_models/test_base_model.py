@@ -27,7 +27,7 @@ class Test_Model(unittest.TestCase):
         del cls.Base2
         try:
             os.remove("file.json")
-        except:
+        except Exception:
             pass
 
     def test_docstring(self):

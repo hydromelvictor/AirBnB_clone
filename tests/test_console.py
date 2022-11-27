@@ -15,7 +15,6 @@ from models.user import User
 import models
 
 
-
 class TestConsole(unittest.TestCase):
     """inheritance of unittest class"""
 
@@ -39,7 +38,7 @@ class TestConsole(unittest.TestCase):
         with patch('sys.stdout', new=StringIO()) as f:
             HBNBCommand().onecmd("EOF")
             self.assertTrue(f.getvalue())
-    
+
     def test_do_quit(self):
         with patch('sys.stdout', new=StringIO()) as f:
             HBNBCommand().onecmd("quit")
@@ -64,8 +63,8 @@ class TestConsole(unittest.TestCase):
     def test_do_all_noargs(self):
         with patch('sys.stdout', new=StringIO()) as f:
             HBNBCommand().onecmd("all")
-            Objcls = models.storage.all()
-            self.assertEqual(f.getvalue(), [str(Objcls[key]) for key in Objcls])
+            ob = models.storage.all()
+            self.assertEqual(f.getvalue(), [str(ob[key]) for key in ob])
 
     def test_do_update_noargs(self):
         with patch('sys.stdout', new=StringIO()) as f:
@@ -77,7 +76,7 @@ class TestConsole(unittest.TestCase):
         with patch('sys.stdout', new=StringIO()) as f:
             HBNBCommand().onecmd("create MyModels")
             self.assertEqual(f.getvalue(), "** class doesn't exist **")
-    
+
     def test_do_show_dont_class(self):
         with patch('sys.stdout', new=StringIO()) as f:
             HBNBCommand().onecmd("show MyModels")
@@ -109,9 +108,9 @@ class TestConsole(unittest.TestCase):
         with patch('sys.stdout', new=StringIO()) as f:
             HBNBCommand().onecmd("all BaseModel")
             Objcls = models.storage.all()
-            self.assertEqual(f.getvalue(), [])############################
+            self.assertEqual(f.getvalue(), [])
 
-#id missing
+# id missing
     def test_do_show_id_missing(self):
         with patch('sys.stdout', new=StringIO()) as f:
             HBNBCommand().onecmd("show BaseModel")
@@ -137,9 +136,6 @@ class TestConsole(unittest.TestCase):
 # value missing
     # def test_do_update_val_missing(self):
 
-
-
-            
 
 if __name__ == '__main__':
     unittest.main()
