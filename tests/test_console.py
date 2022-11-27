@@ -2,6 +2,7 @@
 """Test of console"""
 
 import unittest
+from unittest.mock import patch
 from console import HBNBCommand
 from io import StringIO
 from models.amenity import Amenity
@@ -64,7 +65,7 @@ class TestConsole(unittest.TestCase):
         with patch('sys.stdout', new=StringIO()) as f:
             HBNBCommand().onecmd("all")
             Objcls = models.storage.all()
-            self.assertEqual(f.getvalue(), [str(Objcls[key]) for key in objects])
+            self.assertEqual(f.getvalue(), [str(Objcls[key]) for key in Objcls])
 
     def test_do_update_noargs(self):
         with patch('sys.stdout', new=StringIO()) as f:
@@ -127,14 +128,14 @@ class TestConsole(unittest.TestCase):
             self.assertEqual(f.getvalue(), "** instance id missing **")
 
 # no instances found
-    def test_do_show_inst_found(self):
-    def test_do_destroy_inst_found(self):
-    def test_do_update_inst_found(self):
+    # def test_do_show_inst_found(self):
+    # def test_do_destroy_inst_found(self):
+    # def test_do_update_inst_found(self):
 
 # attribut missing
-    def test_do_update_attr_missing(self):
+    # def test_do_update_attr_missing(self):
 # value missing
-    def test_do_update_val_missing(self):
+    # def test_do_update_val_missing(self):
 
 
 
