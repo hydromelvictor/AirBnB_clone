@@ -31,6 +31,10 @@ class HBNBCommand(cmd.Cmd):
         """Quit command to exit the program"""
         return True
 
+    def noline(self):
+        """free line"""
+        pass
+
     def do_create(self, args):
         """
         creates a new instance of basemodel
