@@ -55,9 +55,7 @@ class HBNBCommand(cmd.Cmd):
         prints the string representation of an instance
         arg 1: class name | arg 2: di
         """
-        if args is None or len(args) == 0:
-            print("** class name missing **")
-        else:
+        if args:
             sp = args.split()
             if sp[0] in objs:
                 if len(sp) < 2:
@@ -71,6 +69,8 @@ class HBNBCommand(cmd.Cmd):
                         print("** no instance found **")
             else:
                 print("** class doesn't exist **")
+        else:
+            print("** class name missing **")
 
     def do_destroy(self, args):
         """
