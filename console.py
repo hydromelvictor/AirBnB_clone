@@ -40,15 +40,15 @@ class HBNBCommand(cmd.Cmd):
         creates a new instance of basemodel
         arg: Class name
         """
-        if args:
+        if args is None or len(args) == 0:
+            print("** class name missing **")
+        else:
             if args in objs:
                 new = eval(str(args) + "()")
                 new.save()
                 print(new.id)
             else:
                 print("** class doesn't exist **")
-        else:
-            print("** class name missing **")
 
     def do_show(self, args):
         """
