@@ -77,9 +77,7 @@ class HBNBCommand(cmd.Cmd):
         Deletes an instance based on the class name
         arg 1: class name | arg 2: id
         """
-        if args is None or len(args) == 0:
-            print("** class name missing **")
-        else:
+        if args:
             sp = args.split()
             if sp[0] in objs:
                 if len(sp) < 2:
@@ -94,6 +92,8 @@ class HBNBCommand(cmd.Cmd):
                         print("** no instance found **")
             else:
                 print("** class doesn't exist **")
+        else:
+            print("** class name missing **")
 
     def do_all(self, args):
         """
