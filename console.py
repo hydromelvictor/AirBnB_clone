@@ -40,22 +40,24 @@ class HBNBCommand(cmd.Cmd):
         creates a new instance of basemodel
         arg: Class name
         """
-        if args:
+        if args is None or len(args) == 0:
+            print("** class name missing **")
+        else:
             if args in objs:
                 new = eval(str(args) + "()")
                 new.save()
                 print(new.id)
             else:
                 print("** class doesn't exist **")
-        else:
-            print("** class name missing **")
 
     def do_show(self, args):
         """
         prints the string representation of an instance
         arg 1: class name | arg 2: di
         """
-        if args:
+        if args is None or len(args) == 0:
+            print("** class name missing **")
+        else:
             sp = args.split()
             if sp[0] in objs:
                 if len(sp) < 2:
@@ -69,15 +71,15 @@ class HBNBCommand(cmd.Cmd):
                         print("** no instance found **")
             else:
                 print("** class doesn't exist **")
-        else:
-            print("** class name missing **")
 
     def do_destroy(self, args):
         """
         Deletes an instance based on the class name
         arg 1: class name | arg 2: id
         """
-        if args:
+        if args is None or len(args) == 0:
+            print("** class name missing **")
+        else:
             sp = args.split()
             if sp[0] in objs:
                 if len(sp) < 2:
@@ -92,8 +94,6 @@ class HBNBCommand(cmd.Cmd):
                         print("** no instance found **")
             else:
                 print("** class doesn't exist **")
-        else:
-            print("** class name missing **")
 
     def do_all(self, args):
         """
@@ -102,20 +102,21 @@ class HBNBCommand(cmd.Cmd):
         """
         Objcls = models.storage.all()
         objects = []
-        if args:
-            sp = args.split()
-            if sp[0] in objs
-                for obj in Objcls:
-                    _dict = Objcls[obj]
-                    if _dict['__class__'] == objs[sp[0]]:
-                        objects.append(str(Objcls[obj]))
-                print(objects)
-            else:
-                print("** class doesn't exist **")
-        else:
+        if args is "":
             for key in Objcls:
                 objects.append(str(Objcls[key]))
             print(objects)
+        else:
+            try:
+                sp = args.split()
+                eval(sp[0])
+                for obj in Objcls:
+                    _dict = Objcls[obj].to_dict()
+                    if _dict['__class__'] == sp[0]:
+                        objects.append(str(Objcls[obj]))
+                print(objects)
+            except Exception:
+                print("** class doesn't exist **")
 
     def do_update(self, args):
         """
