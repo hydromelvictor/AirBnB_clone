@@ -54,3 +54,10 @@ class BaseModel:
     def __str__(self):
         """print the instance"""
         return f"[{self.__class__.__name__}] ({self.id}) {self.__dict__}"
+    
+    def __repr__(self):
+        
+        """
+        returns string repr
+        """
+        return (self.__str__())
