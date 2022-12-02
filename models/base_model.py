@@ -33,7 +33,7 @@ class BaseModel:
     def save(self):
         """update datetime after modification"""
         self.updated_at = datetime.now()
-        models.storage.save()
+        models.storage.save(self)
 
     def to_dict(self):
         """return instance in dictonnary format"""
