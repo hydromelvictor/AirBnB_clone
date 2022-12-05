@@ -5,6 +5,6 @@ footer {
     text-align: center; 
     padding: 15px; 
     box-sizing: border-box; 
-    position: fixed; 
+    position: fixed;
     bottom: 0;
 }

@@ -67,9 +67,13 @@
 
 .user, .description {
     text-align: left;
-    margin: 5px 0;
+    margin: 10px 0;
 }
 
 strong {
     font-weight: 600;
+}
+
+.description {
+    height: inherit;
 }

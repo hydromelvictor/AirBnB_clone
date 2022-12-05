@@ -68,7 +68,8 @@
     font-weight: 600;
 }
 
-.filters div:hover .popover {
+.filters .locations:hover .popover,
+.filters .amenities:hover .popover {
     display: block;
 }
 
